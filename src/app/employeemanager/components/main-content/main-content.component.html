@@ -1,3 +1,37 @@
-<mat-card>
-  <h1>Main Content</h1>
-</mat-card>
+<!--
+  <mat-card>
+    <h1>Main Content</h1>
+  </mat-card>
+-->
+<div>
+  <mat-card
+    *ngFor="let emp of (employees | async)"
+    class="kid"
+    class="pending-approval"
+    (click)="__cardClick(emp)">
+    <mat-card-header>
+      <!-- <div mat-card-avatar><mat-icon>person</mat-icon></div> -->
+      <mat-card-title>
+        <!-- <a href="#"> -->
+          <mat-icon mat-card-avatar svgIcon="{{emp.avatar}}"></mat-icon> {{ emp.name }}
+        <!-- </a> -->
+      </mat-card-title>
+      <mat-card-subtitle>{{ emp.birthDate }}</mat-card-subtitle>
+    </mat-card-header>
+    <hr>
+  </mat-card>
+  </div>
+
+<!--
+  <div class="container" [@listAnimation]="(employees | async)?.length">
+    <mat-card *ngFor="let emp of employees | async;" class="kid" >
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon>person</mat-icon>
+        </div>
+        <mat-card-title>{{emp.name}} ({{emp.id}})</mat-card-title>
+        <mat-card-subtitle>{{emp.birthDate}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+-->
