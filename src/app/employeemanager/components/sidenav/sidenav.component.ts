@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Observable } from 'rxjs';
 import { Employee } from '../../models/employee';
+import { Router } from '@angular/router';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -15,7 +16,7 @@ export class SidenavComponent implements OnInit {
   employees: Observable<Employee[]>;
   isIndigoTheme: boolean = false;
   dir: string = 'ltr';
-  constructor(zone: NgZone, private employeeService: EmployeeService) {
+  constructor(zone: NgZone, private employeeService: EmployeeService, private router: Router) {
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
    }
@@ -24,7 +25,10 @@ export class SidenavComponent implements OnInit {
     this.employees = this.employeeService.employees;
     this.employeeService.loadAll();
     this.employees.subscribe(data => {
-      console.log(data);
+     // console.log(data);
+      // if(data.length>0){
+      //   this.router.navigate(['/employeemanager', data[0].id]);
+      // }
     })
   }
 

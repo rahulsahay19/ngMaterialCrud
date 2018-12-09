@@ -23,14 +23,11 @@ export class MainContentComponent implements OnInit {
       console.log(data);
     });
 
-    this.route.params.subscribe(params =>{
-      const id = params['id'];
-      this.employee = this.employeeService.employeeById(id);
-    });
+    
   }
 
   __cardClick(emp){
-    this.router.navigate(['employee/edit', emp.employeeId]);
+    this.router.navigate(['employeemanager', emp.id]);
   }
 
 }

@@ -10,6 +10,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { EmployeeManagerRoutingModule } from './employeemanager-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NewEmployeeDialogComponent } from './components/new-employee-dialog/new-employee-dialog.component';
+import { DetailviewComponent } from './components/detailview/detailview.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NewEmployeeDialogComponent } from './components/new-employee-dialog/new
     MainContentComponent,
     SidenavComponent,
     NewEmployeeDialogComponent,
+    DetailviewComponent,
     //ReactiveFormsModule
   ],
   imports: [
