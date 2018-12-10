@@ -29,4 +29,8 @@ export class DetailviewComponent implements OnInit {
     });
   }
 
+  backToHome(){
+    this.router.navigate(['employeemanager']);
+  }
+
 }

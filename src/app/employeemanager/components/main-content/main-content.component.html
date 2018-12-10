@@ -17,11 +17,19 @@
         <!-- </a> -->
       </mat-card-title>
       <mat-card-subtitle>{{ emp.birthDate }}</mat-card-subtitle>
-    </mat-card-header>
+      <div fxFlex></div>
+      <button mat-button color="primary"><mat-icon>edit</mat-icon></button>
+     <button mat-button><mat-icon>delete</mat-icon></button>
+      </mat-card-header>
     <hr>
   </mat-card>
   </div>
 
+  <div class="fab-container">
+    <button mat-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 <!--
   <div class="container" [@listAnimation]="(employees | async)?.length">
     <mat-card *ngFor="let emp of employees | async;" class="kid" >

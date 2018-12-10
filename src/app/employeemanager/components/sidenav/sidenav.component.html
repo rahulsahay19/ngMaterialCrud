@@ -11,10 +11,18 @@
         <a matLine href="#">{{ employee.name }}</a>
       </mat-list-item>
     </mat-nav-list>
+    
+    <div class="copyright-container">
+        <a href="https://myview.rahulnivi.net" target="_blank"><span>Copyright &copy; Rahul Sahay </span></a> 
+        <div fxFlex></div>
+      
+    </div>
   </mat-sidenav>
 
   <div class="app-sidenav-content">
     <app-toolbar (toggleSidenav)="sidenav.toggle()" (toggleDir)="toggleDir()"></app-toolbar>
     <div class="wrapper"><router-outlet></router-outlet></div>
   </div>
-</mat-sidenav-container>
+  </mat-sidenav-container>
+
+
