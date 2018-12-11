@@ -49,4 +49,13 @@ export class EmployeeService {
       resolver(empl);
     });
   }
+
+  editEmployee(empl:Employee): Promise<Employee>{
+    return new Promise((resolver,reject)=>{
+      if(empl){
+        this._employees.next(Object.assign({}, this.dataStore).employees);
+        resolver(empl);
+      }
+    })
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../shared/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EmployeemanagerAppComponent } from './employeemanager-app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewEmployeeDialogComponent } from './components/new-employee-dialog/new-employee-dialog.component';
 import { DetailviewComponent } from './components/detailview/detailview.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { EditEmployeeDialogComponent } from './components/edit-employee-dialog/edit-employee-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +23,18 @@ import { NotesComponent } from './components/notes/notes.component';
     NewEmployeeDialogComponent,
     DetailviewComponent,
     NotesComponent,
-    //ReactiveFormsModule
+    EditEmployeeDialogComponent,
+    
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     HttpClientModule,
     EmployeeManagerRoutingModule
   ],
-  entryComponents: [NewEmployeeDialogComponent]
+  entryComponents: [NewEmployeeDialogComponent, EditEmployeeDialogComponent]
 })
 export class EmployeemanagerModule { }

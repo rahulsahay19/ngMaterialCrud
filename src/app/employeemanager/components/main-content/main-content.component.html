@@ -7,10 +7,9 @@
   <mat-card
     *ngFor="let emp of (employees | async)"
     class="kid"
-    class="pending-approval"
-    (click)="__cardClick(emp)">
+    >
     <mat-card-header>
-      <!-- <div mat-card-avatar><mat-icon>person</mat-icon></div> -->
+      <div mat-card-avatar><mat-icon>person</mat-icon></div>
       <mat-card-title>
         <!-- <a href="#"> -->
           <mat-icon mat-card-avatar svgIcon="{{emp.avatar}}"></mat-icon> {{ emp.name }}
@@ -18,28 +17,10 @@
       </mat-card-title>
       <mat-card-subtitle>{{ emp.birthDate }}</mat-card-subtitle>
       <div fxFlex></div>
-      <button mat-button color="primary"><mat-icon>edit</mat-icon></button>
-     <button mat-button><mat-icon>delete</mat-icon></button>
+      <button mat-button (click)="__cardClick(emp)"> <mat-icon>beenhere</mat-icon></button>
+      <button mat-button color="primary" (click)="openEmployeeDialog(emp)" ><mat-icon>edit</mat-icon></button>
+     <button mat-button (click)="deleteItem(emp)"><mat-icon>delete</mat-icon></button>
       </mat-card-header>
     <hr>
   </mat-card>
   </div>
-
-  <!-- <div class="fab-container">
-    <button mat-fab color="accent">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div> -->
-<!--
-  <div class="container" [@listAnimation]="(employees | async)?.length">
-    <mat-card *ngFor="let emp of employees | async;" class="kid" >
-      <mat-card-header>
-        <div mat-card-avatar>
-          <mat-icon>person</mat-icon>
-        </div>
-        <mat-card-title>{{emp.name}} ({{emp.id}})</mat-card-title>
-        <mat-card-subtitle>{{emp.birthDate}}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
--->

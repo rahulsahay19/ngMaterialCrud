@@ -6,21 +6,24 @@
     [mode]="isScreenSmall() ? 'over' : 'side'"
   >
     <mat-toolbar color="primary">Employees</mat-toolbar>
-    <!-- <mat-nav-list>
-      <mat-list-item *ngFor="let employee of (employees | async)">
-        <a matLine href="#">{{ employee.name }}</a>
+     <mat-nav-list>
+      <mat-list-item>
+          <a matLine [routerLink]="['/employeemanager']"> <mat-icon>home</mat-icon> Home </a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>attach_file</mat-icon> Attach File
+      </mat-list-item>
+      <mat-list-item> <mat-icon>add_comment</mat-icon> Comment </mat-list-item>
+      <mat-list-item>
+        <mat-icon>cloud_download</mat-icon> Download
+      </mat-list-item>
+      <mat-list-item>
+          <mat-icon>apps</mat-icon> Apps
       </mat-list-item>
     </mat-nav-list>
-     -->
-     <mat-nav-list>
-       <mat-icon>face</mat-icon> Menu 1
-       <br>
-       <mat-icon>movie</mat-icon> Menu 4
-      </mat-nav-list>
     <div class="copyright-container">
-        <a href="https://myview.rahulnivi.net" target="_blank"><span>Copyright &copy; Rahul Sahay </span></a> 
-        <div fxFlex></div>
-      
+      <a href="https://myview.rahulnivi.net" target="_blank"><span>Copyright &copy; Rahul Sahay </span></a>
+      <div fxFlex></div>
     </div>
   </mat-sidenav>
 
@@ -28,6 +31,4 @@
     <app-toolbar (toggleSidenav)="sidenav.toggle()" (toggleDir)="toggleDir()"></app-toolbar>
     <div class="wrapper"><router-outlet></router-outlet></div>
   </div>
-  </mat-sidenav-container>
-
-
+</mat-sidenav-container>

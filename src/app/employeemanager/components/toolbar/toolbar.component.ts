@@ -27,10 +27,10 @@ export class ToolbarComponent implements OnInit {
       console.log('Dialog closed', result);
 
       if(result){
-        this.openSnackBar("Employee Added","Navigate")
+        this.openSnackBar("Employee Added", "Navigate")
         .onAction().subscribe(()=>{
           //navigate
-         // this.router.navigate(['/employeeManager', result.id]);
+          this.router.navigate(['/employeemanager', result.id]);
         });
       }
     });
