@@ -6,12 +6,17 @@
     [mode]="isScreenSmall() ? 'over' : 'side'"
   >
     <mat-toolbar color="primary">Employees</mat-toolbar>
-    <mat-nav-list>
+    <!-- <mat-nav-list>
       <mat-list-item *ngFor="let employee of (employees | async)">
         <a matLine href="#">{{ employee.name }}</a>
       </mat-list-item>
     </mat-nav-list>
-    
+     -->
+     <mat-nav-list>
+       <mat-icon>face</mat-icon> Menu 1
+       <br>
+       <mat-icon>movie</mat-icon> Menu 4
+      </mat-nav-list>
     <div class="copyright-container">
         <a href="https://myview.rahulnivi.net" target="_blank"><span>Copyright &copy; Rahul Sahay </span></a> 
         <div fxFlex></div>

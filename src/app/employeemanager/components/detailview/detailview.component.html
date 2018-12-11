@@ -12,9 +12,17 @@
     <mat-card-subtitle>Birthday {{employee.birthDate | date:'d LLLL'}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      {{employee.bio}}
-    </p>
+    <mat-tab-group>
+      <mat-tab label="Bio">
+          <p>
+              {{employee.bio}}
+            </p>
+      </mat-tab>
+      <mat-tab label="Notes">
+        <app-notes [notes]="employee.notes"></app-notes>
+      </mat-tab>
+    </mat-tab-group>
+    
   </mat-card-content>
 </mat-card>
 </div>

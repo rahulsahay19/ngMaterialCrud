@@ -11,6 +11,7 @@ import { EmployeeManagerRoutingModule } from './employeemanager-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NewEmployeeDialogComponent } from './components/new-employee-dialog/new-employee-dialog.component';
 import { DetailviewComponent } from './components/detailview/detailview.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DetailviewComponent } from './components/detailview/detailview.componen
     SidenavComponent,
     NewEmployeeDialogComponent,
     DetailviewComponent,
+    NotesComponent,
     //ReactiveFormsModule
   ],
   imports: [
