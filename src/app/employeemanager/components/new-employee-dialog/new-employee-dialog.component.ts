@@ -19,13 +19,7 @@ export class NewEmployeeDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<NewEmployeeDialogComponent>,
               private employeeService: EmployeeService) { }
 
-  
-    // name = new FormControl('', [Validators.required]);
-  
-    // getErrorMessage() {
-    //   return this.name.hasError('required') ? 'You must enter a name' : '';
-    // }
-
+      
   ngOnInit() {
     this.employee = new Employee();
   }

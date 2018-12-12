@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EmployeeService } from '../../services/employee.service';
@@ -10,7 +10,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./edit-employee-dialog.component.scss']
 })
 export class EditEmployeeDialogComponent implements OnInit {
-
+  @ViewChild('idvalue') idvalue: ElementRef;
+  @ViewChild('indexvalue') indexvalue : ElementRef;
   form: FormGroup;
   avatars = [
     'svg-1', 'svg-2', 'svg-3', 'svg-4'
@@ -18,13 +19,15 @@ export class EditEmployeeDialogComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditEmployeeDialogComponent>,
     private employeeService: EmployeeService,
-    @Inject(MAT_DIALOG_DATA) {avatar, name, birthDate, bio}: Employee) { 
+    @Inject(MAT_DIALOG_DATA) { id, avatar, name, birthDate, bio, index}) { 
       
       this.form = fb.group({
+        id: [id],
         avatar: [avatar],
         name: [name],
         birthDate: [birthDate],
-        bio: [bio]
+        bio: [bio],
+        index: [index]
       });
     }
 
@@ -34,14 +37,11 @@ export class EditEmployeeDialogComponent implements OnInit {
 
   onEdit(){
 
-    // this.employeeService.editEmployee(emp).then(empl=>{
-    //   this.dialogRef.close(empl);
-    // });
-    
-    this.employeeService.editEmployee(this.form.value).then(empl=>{
+    this.employeeService.update(this.indexvalue.nativeElement.value, this.form.value).then(empl=>{
       this.dialogRef.close(empl);
     });
-  }
+    
+   }
 
   onCancel(){
     this.dialogRef.close();

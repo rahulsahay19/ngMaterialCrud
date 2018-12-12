@@ -20,7 +20,7 @@ export class DetailviewComponent implements OnInit {
     this.route.params.subscribe(params =>{
       const id = params['id'];
 
-      this.employeeService.employees.subscribe(emps =>{
+      this.employeeService.employeesSet.subscribe(emps =>{
         if(emps.length == 0) return;
         this.employee = this.employeeService.employeeById(id);
       });

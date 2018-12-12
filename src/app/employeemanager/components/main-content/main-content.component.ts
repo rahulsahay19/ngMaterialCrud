@@ -6,13 +6,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBarRef, SimpleSnackBar, MatSnackBar, MatDialogConfig } from '@angular/material';
 import { EditEmployeeDialogComponent } from '../edit-employee-dialog/edit-employee-dialog.component';
 
+
 @Component({
   selector: 'app-main-content',
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.scss']
 })
 export class MainContentComponent implements OnInit {
-  @Input() employees: Observable<Employee[]>;
+  @Input() employeesData: Observable<Employee[]>;
   employee: Employee;
   constructor(private employeeService: EmployeeService,
      private router: Router,
@@ -21,24 +22,25 @@ export class MainContentComponent implements OnInit {
      private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.employees = this.employeeService.employees;
-    this.employeeService.loadAll();
-    this.employees.subscribe(data =>{
+    this.employeesData = this.employeeService.employeesSet;
+    this.employeeService.getJSON();
+    this.employeesData.subscribe(data =>{
       console.log(data);
     });
   }
 
   __cardClick(emp){
+    console.log(emp);
     this.router.navigate(['employeemanager', emp.id]);
   }
 
-  openEmployeeDialog({avatar, name, birthDate, bio}:Employee){
+  openEmployeeDialog(index:number,{ id, avatar, name, birthDate, bio}:Employee){
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "450px";
-    dialogConfig.data= {avatar, name, birthDate, bio};
+    dialogConfig.data= {id, avatar, name, birthDate, bio, index};
     const dialogRef = this.dialog.open(EditEmployeeDialogComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(
       val => console.log("Dialog output:", val)
@@ -51,7 +53,7 @@ export class MainContentComponent implements OnInit {
      });
    }
    
-   deleteItem(emp){
-
+   deleteItem(i:number){
+    this.employeeService.deleteEmployee(i);
    }
 }

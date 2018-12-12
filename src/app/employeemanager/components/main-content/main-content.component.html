@@ -1,25 +1,20 @@
-<!--
-  <mat-card>
-    <h1>Main Content</h1>
-  </mat-card>
--->
 <div>
   <mat-card
-    *ngFor="let emp of (employees | async)"
+    *ngFor="let emp of (employeesData | async); let i = index"
     class="kid"
     >
     <mat-card-header>
-      <div mat-card-avatar><mat-icon>person</mat-icon></div>
+      <!-- <div mat-card-avatar><mat-icon>person</mat-icon></div> -->
       <mat-card-title>
-        <!-- <a href="#"> -->
-          <mat-icon mat-card-avatar svgIcon="{{emp.avatar}}"></mat-icon> {{ emp.name }}
-        <!-- </a> -->
+        
+        <mat-icon mat-card-avatar svgIcon="{{emp.avatar}}"></mat-icon> {{ emp.name }}
+        
       </mat-card-title>
       <mat-card-subtitle>{{ emp.birthDate }}</mat-card-subtitle>
       <div fxFlex></div>
       <button mat-button (click)="__cardClick(emp)"> <mat-icon>beenhere</mat-icon></button>
-      <button mat-button color="primary" (click)="openEmployeeDialog(emp)" ><mat-icon>edit</mat-icon></button>
-     <button mat-button (click)="deleteItem(emp)"><mat-icon>delete</mat-icon></button>
+      <button mat-button color="primary" (click)="openEmployeeDialog(i, emp)" ><mat-icon>edit</mat-icon></button>
+     <button mat-button (click)="deleteItem(i)"><mat-icon>delete</mat-icon></button>
       </mat-card-header>
     <hr>
   </mat-card>

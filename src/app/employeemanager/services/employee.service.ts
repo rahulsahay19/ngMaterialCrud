@@ -1,61 +1,67 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private _employees: BehaviorSubject<Employee[]>;
+   private _employeesSet: BehaviorSubject<Employee[]>;
 
   private dataStore: {
-    employees: Employee[]
+     employeesSet: Employee[]
   }
 
   //this will allow components to subscribe to this behavior subject
   constructor(private http: HttpClient) { 
-    this.dataStore = { employees: [] };
-    this._employees = new BehaviorSubject<Employee[]>([]);
+    this.dataStore = { employeesSet:[] };
+    this._employeesSet = new BehaviorSubject<Employee[]>([]);
   }
 
-  get employees(): Observable<Employee[]>{
-    return this._employees.asObservable();
+
+  get employeesSet(): Observable<Employee[]>{
+    return this._employeesSet.asObservable();
   }
 
-  loadAll() {
-    const employeesUrl = 'https://angular-material-api.azurewebsites.net/users';
-    return this.http.get<Employee[]>(employeesUrl)
+ 
+  getJSON() {
+    return this.http.get<Employee[]>("assets/employeeData.json")
     .subscribe(data =>{
-      this.dataStore.employees = data;
-      //next will publish data to all our subscribing components
-      //object.assign will make a new copy of the internal store.
-      //this is to prevent the actual store from being tampered
-      this._employees.next(Object.assign({}, this.dataStore).employees);
-    }, err=>{
-      console.log('Unable to fetch employees!');
-    });
-  }
-  employeeById(id : number){
-    return this.dataStore.employees.find(x=>x.id == id);
-  }
+          this.dataStore.employeesSet = data;
+          this._employeesSet.next(Object.assign({}, this.dataStore).employeesSet);
+      }), catchError(error => {
+          return throwError('Unable to fetch employees set!');
+});
+
+}
+
+employeeById(id : number){
+  return this.dataStore.employeesSet.find(x=>x.id == id);
+}
 
   addEmployee(empl:Employee): Promise<Employee>{
     return new Promise((resolver,reject) =>{
-      empl.id = this.dataStore.employees.length + 1;
-      this.dataStore.employees.push(empl);
-      this._employees.next(Object.assign({}, this.dataStore).employees);
+      empl.id = this.dataStore.employeesSet.length + 1;
+      this.dataStore.employeesSet.push(empl);
+      this._employeesSet.next(Object.assign({}, this.dataStore).employeesSet);
       resolver(empl);
     });
   }
 
-  editEmployee(empl:Employee): Promise<Employee>{
-    return new Promise((resolver,reject)=>{
-      if(empl){
-        this._employees.next(Object.assign({}, this.dataStore).employees);
-        resolver(empl);
-      }
+  update(index:number, empl: Employee): Promise<Employee> {
+    return new Promise((resolver,reject) =>{
+          this.dataStore.employeesSet[index] = empl;
+          this._employeesSet.next(Object.assign({}, this.dataStore).employeesSet);
+          resolver(empl);      
     })
+    
+  }
+
+  deleteEmployee(index:number){
+    this.dataStore.employeesSet.splice(index,1);
   }
 }

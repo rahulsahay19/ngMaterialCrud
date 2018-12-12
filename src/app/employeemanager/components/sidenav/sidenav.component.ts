@@ -22,14 +22,7 @@ export class SidenavComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.employees = this.employeeService.employees;
-    this.employeeService.loadAll();
-    this.employees.subscribe(data => {
-     // console.log(data);
-      // if(data.length>0){
-      //   this.router.navigate(['/employeemanager', data[0].id]);
-      // }
-    })
+    
   }
 
   isScreenSmall(): boolean{
